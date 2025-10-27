@@ -2,9 +2,10 @@ package com.locaimmo.serviceuser.repository;
 
 import com.locaimmo.serviceuser.domain.entity.Proprietaire;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-
+@Repository
 public interface ProprietaireRepository extends JpaRepository<Proprietaire, Long> {
 
 
