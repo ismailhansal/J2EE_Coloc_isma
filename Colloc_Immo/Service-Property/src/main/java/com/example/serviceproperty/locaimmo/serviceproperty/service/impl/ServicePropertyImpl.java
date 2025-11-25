@@ -1,8 +1,12 @@
 package com.example.serviceproperty.locaimmo.serviceproperty.service.impl;
 
+import com.example.serviceproperty.locaimmo.serviceproperty.domain.dto.PropertyDto;
 import com.example.serviceproperty.locaimmo.serviceproperty.domain.entity.Property;
+import com.example.serviceproperty.locaimmo.serviceproperty.feignrequests.UserDto;
+import com.example.serviceproperty.locaimmo.serviceproperty.feignrequests.UserFeignRequest;
 import com.example.serviceproperty.locaimmo.serviceproperty.repository.PropertyRepository;
 import com.example.serviceproperty.locaimmo.serviceproperty.service.IServiceProperty;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,9 +17,22 @@ import java.util.List;
 public class ServicePropertyImpl implements IServiceProperty {
 
     private final PropertyRepository propertyRepository;
+    private final UserFeignRequest userFeignRequest;
 
-    public ServicePropertyImpl(PropertyRepository propertyRepository) {
+    public ServicePropertyImpl(PropertyRepository propertyRepository, UserFeignRequest userFeignRequest) {
         this.propertyRepository = propertyRepository;
+        this.userFeignRequest = userFeignRequest;
+    }
+
+    public PropertyDto getPropertyWithUser(Long propertyId) {
+        Property property = findById(propertyId);
+
+        ResponseEntity<UserDto> response = userFeignRequest.getUserById(property.getId());
+        UserDto user = response.getBody();
+
+        return new PropertyDto(property.getId(), property.getAdresse(), property.getVille(),
+                property.getLatitude(), property.getLongitude(),
+                property.getDescription(), property.getRules(), user);
     }
 
     @Override

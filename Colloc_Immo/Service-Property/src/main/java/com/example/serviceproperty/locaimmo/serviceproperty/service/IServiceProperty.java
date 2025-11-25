@@ -1,10 +1,12 @@
 package com.example.serviceproperty.locaimmo.serviceproperty.service;
 
+import com.example.serviceproperty.locaimmo.serviceproperty.domain.dto.PropertyDto;
 import com.example.serviceproperty.locaimmo.serviceproperty.domain.entity.Property;
 
 import java.util.List;
 
 public interface IServiceProperty {
+
 
     List<Property> findAll();
 
@@ -15,4 +17,6 @@ public interface IServiceProperty {
     Property update(Long id, Property property);
 
     void delete(Long id);
+    PropertyDto getPropertyWithUser(Long propertyId);
+
 }

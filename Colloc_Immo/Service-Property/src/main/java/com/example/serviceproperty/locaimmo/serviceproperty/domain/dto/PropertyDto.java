@@ -1,7 +1,8 @@
 package com.example.serviceproperty.locaimmo.serviceproperty.domain.dto;
 
-public class PropertyDto {
+import com.example.serviceproperty.locaimmo.serviceproperty.feignrequests.UserDto;
 
+public class PropertyDto {
     private Long id;
     private String adresse;
     private String ville;
@@ -9,72 +10,45 @@ public class PropertyDto {
     private Double longitude;
     private String description;
     private String rules;
-    private Long proprietaireId; // id du propriétaire
+    private UserDto owner;
 
-    public PropertyDto() {
-    }
+    public PropertyDto() {} // constructeur vide
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    // constructeur complet
+    public PropertyDto(Long id, String adresse, String ville, Double latitude, Double longitude,
+                       String description, String rules, UserDto owner) {
         this.id = id;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
         this.adresse = adresse;
-    }
-
-    public String getVille() {
-        return ville;
-    }
-
-    public void setVille(String ville) {
         this.ville = ville;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
         this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
         this.longitude = longitude;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getRules() {
-        return rules;
-    }
-
-    public void setRules(String rules) {
         this.rules = rules;
+        this.owner = owner;
     }
 
-    public Long getProprietaireId() {
-        return proprietaireId;
-    }
+    // Getters et Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setProprietaireId(Long proprietaireId) {
-        this.proprietaireId = proprietaireId;
-    }
+    public String getAdresse() { return adresse; }
+    public void setAdresse(String adresse) { this.adresse = adresse; }
+
+    public String getVille() { return ville; }
+    public void setVille(String ville) { this.ville = ville; }
+
+    public Double getLatitude() { return latitude; }
+    public void setLatitude(Double latitude) { this.latitude = latitude; }
+
+    public Double getLongitude() { return longitude; }
+    public void setLongitude(Double longitude) { this.longitude = longitude; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getRules() { return rules; }
+    public void setRules(String rules) { this.rules = rules; }
+
+    public UserDto getOwner() { return owner; }
+    public void setOwner(UserDto owner) { this.owner = owner; }
 }

@@ -43,7 +43,7 @@ public class ServiceUserImpl implements IServiceUser {
         return userRepository.findAll();
     }
     @Override
-    public User updateUser(User user) {
+    public User updateUser( Long id,User user) {
         User existing = userRepository.findById(user.getId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found: " +
                         user.getId()));
