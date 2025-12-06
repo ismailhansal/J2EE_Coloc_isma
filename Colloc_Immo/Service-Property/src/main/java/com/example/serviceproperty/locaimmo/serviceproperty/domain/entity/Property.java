@@ -1,6 +1,5 @@
 package com.example.serviceproperty.locaimmo.serviceproperty.domain.entity;
 
-
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +23,10 @@ public class Property {
     @Column(length = 2000)
     private String rules;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "proprietaire_id", nullable = false)
-    private Proprietaire proprietaire;
+    private Long proprietaireId;
 
+
+    // Relation avec les rooms
     @OneToMany(
             mappedBy = "property",
             cascade = CascadeType.ALL,
@@ -35,8 +34,10 @@ public class Property {
     )
     private List<Room> rooms = new ArrayList<>();
 
+    // Constructeurs
     public Property() {}
 
+    // Getters & Setters
     public Long getId() {
         return id;
     }
@@ -93,13 +94,6 @@ public class Property {
         this.rules = rules;
     }
 
-    public Proprietaire getProprietaire() {
-        return proprietaire;
-    }
-
-    public void setProprietaire(Proprietaire proprietaire) {
-        this.proprietaire = proprietaire;
-    }
 
     public List<Room> getRooms() {
         return rooms;
@@ -107,5 +101,16 @@ public class Property {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    // Méthodes utilitaires pour gérer la relation bidirectionnelle avec Room
+    public void addRoom(Room room) {
+        rooms.add(room);
+        room.setProperty(this);
+    }
+
+    public void removeRoom(Room room) {
+        rooms.remove(room);
+        room.setProperty(null);
     }
 }

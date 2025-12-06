@@ -11,10 +11,10 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PropertyMapper {
 
-    @Mapping(source = "proprietaire.id", target = "proprietaireId")
+    //@Mapping(source = "property.id", target = "proprietaireId")
     PropertyDto toDto(Property property);
 
-    @Mapping(target = "proprietaire", ignore = true)
+    //@Mapping(target = "property", ignore = true)
     @Mapping(target = "rooms", ignore = true)
     Property toEntity(PropertyDto dto);
 

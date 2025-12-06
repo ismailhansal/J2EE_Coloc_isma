@@ -11,6 +11,9 @@ public class PropertyDto {
     private String description;
     private String rules;
     private UserDto owner;
+    private Long proprietaireId; // <-- ajoute ça
+
+
 
     public PropertyDto() {} // constructeur vide
 
@@ -51,4 +54,10 @@ public class PropertyDto {
 
     public UserDto getOwner() { return owner; }
     public void setOwner(UserDto owner) { this.owner = owner; }
+
+    public Long getProprietaireId() { return proprietaireId; }
+    public void setProprietaireId(Long proprietaireId) {
+        this.proprietaireId = proprietaireId;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.locaimmo.serviceuser.controller;
 
 import com.locaimmo.serviceuser.domain.dto.user.UserCreateUpdateDto;
 import com.locaimmo.serviceuser.domain.dto.user.UserReadDto;
+import com.locaimmo.serviceuser.domain.entity.Proprietaire;
 import com.locaimmo.serviceuser.domain.entity.User;
 import com.locaimmo.serviceuser.mapper.UserMapper;
 import com.locaimmo.serviceuser.service.IServiceUser;
@@ -32,6 +33,16 @@ public class UserController {
         return ResponseEntity.ok(usersDto);
     }
 
+
+   /* @GetMapping
+    public List<User> getAllUsers() {
+        // données fictives
+        return List.of(
+                new Proprietaire("hansal", "Ismail"),
+                new Proprietaire("ismail", "Paul")
+        );
+    }
+*/
     @GetMapping("/{id}")
     public ResponseEntity<UserReadDto> getUserById(@PathVariable Long id) {
         User user = serviceUser.getUserById(id);

@@ -8,6 +8,10 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("PROPRIETAIRE")
 public class Proprietaire extends User {
     public Proprietaire() { }
+    public Proprietaire(String nom, String prenom) {
+        this.setNom(nom);
+        this.setPrenom(prenom);
+    }
 
     @Column(length = 100)
     private String adresse;

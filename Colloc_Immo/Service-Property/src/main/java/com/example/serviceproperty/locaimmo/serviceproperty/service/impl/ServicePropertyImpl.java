@@ -62,7 +62,6 @@ public class ServicePropertyImpl implements IServiceProperty {
         existing.setLongitude(property.getLongitude());
         existing.setDescription(property.getDescription());
         existing.setRules(property.getRules());
-        existing.setProprietaire(property.getProprietaire());
         return propertyRepository.save(existing);
     }
 

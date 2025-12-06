@@ -69,6 +69,7 @@ public class ServiceUserImpl implements IServiceUser {
                         email));
         return user;
     }
+
     @Override
     public User addRole(Long userId, Long roleId) {
         User user = userRepository.findById(userId)
