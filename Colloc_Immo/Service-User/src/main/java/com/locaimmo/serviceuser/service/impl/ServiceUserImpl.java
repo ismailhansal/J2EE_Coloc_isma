@@ -1,5 +1,6 @@
 package com.locaimmo.serviceuser.service.impl;
 
+import com.locaimmo.serviceuser.domain.dto.user.UserCreateUpdateDto;
 import com.locaimmo.serviceuser.domain.entity.Role;
 import com.locaimmo.serviceuser.domain.entity.User;
 import com.locaimmo.serviceuser.repository.RoleRepository;
@@ -92,4 +93,57 @@ public class ServiceUserImpl implements IServiceUser {
         user.getRoles().remove(role);
         return userRepository.save(user);
     }
+
+    @Override
+    public User create(UserCreateUpdateDto dto) {
+
+        if (userRepository.existsByEmail(dto.getEmail())) {
+            throw new DataIntegrityViolationException("Email déjà utilisé: " + dto.getEmail());
+        }
+
+        User user = new User();
+        user.setEmail(dto.getEmail());
+        user.setPassword(dto.getPassword()); // ou hash si tu veux
+        user.setNom(dto.getNom());
+        user.setPrenom(dto.getPrenom());
+        user.setTelephone(dto.getTelephone());
+
+        // si un jour tu veux ajouter les rôles
+    /*
+    if (dto.getRoleIds() != null) {
+        Set<Role> roles = roleRepository.findByIdIn(dto.getRoleIds());
+        user.setRoles(roles);
+    }
+    */
+
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User updateUser2(Long id, UserCreateUpdateDto dto) {
+        User existing = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found: " + id));
+
+        // Vérifier si l'email change et s'il est déjà utilisé
+        if (!existing.getEmail().equals(dto.getEmail())
+                && userRepository.existsByEmail(dto.getEmail())) {
+            throw new DataIntegrityViolationException("Email déjà utilisé: " + dto.getEmail());
+        }
+
+        // Mettre à jour les champs
+        existing.setEmail(dto.getEmail());
+        existing.setNom(dto.getNom());
+        existing.setPrenom(dto.getPrenom());
+        existing.setTelephone(dto.getTelephone());
+
+        if (dto.getPassword() != null && !dto.getPassword().isBlank()) {
+            existing.setPassword(dto.getPassword());
+        }
+
+        return userRepository.save(existing);
+    }
+
+
+
+
 }

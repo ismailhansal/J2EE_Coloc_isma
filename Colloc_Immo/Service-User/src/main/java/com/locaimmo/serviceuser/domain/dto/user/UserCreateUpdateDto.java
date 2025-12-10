@@ -50,6 +50,8 @@ public class UserCreateUpdateDto implements Serializable {
         return telephone;
     }
 
+
+
     public Set<Long> getRoleIds() {
         return roleIds;
     }
@@ -84,4 +86,5 @@ public class UserCreateUpdateDto implements Serializable {
                 "telephone = " + telephone + ", " +
                 "roleIds = " + roleIds + ")";
     }
+
 }
