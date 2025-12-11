@@ -14,6 +14,8 @@ public interface IServiceUser {
     List<User> getAllUsers();
     User updateUser(Long id, User user);
     void deleteUser(Long id);
+    User delete(Long id);
+
     User findByEmail(String email);
     User addRole(Long userId, Long roleId);
     User removeRole(Long userId, Long roleId);

@@ -32,4 +32,12 @@ input UserUpdateInput {
 type Mutation {
     createUser(input: UserInput!): User
     updateUser2(id: ID!, input: UserUpdateInput!): User
+    delete(id: ID!): User
+
 }
+
+type Subscription {
+    userCreated: User
+    userUpdated: User
+}
+

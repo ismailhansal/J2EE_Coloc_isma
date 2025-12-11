@@ -9,7 +9,10 @@ import com.locaimmo.serviceuser.service.IServiceUser;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SubscriptionMapping;
 import org.springframework.stereotype.Controller;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Sinks;
 
 import java.util.List;
 
@@ -19,11 +22,26 @@ public class UserGraphQLController {
     private final IServiceUser userService;
     private final UserMapper userMapper;
 
+    private final Sinks.Many<UserReadDto> userCreatedSink = Sinks.many().multicast().onBackpressureBuffer();
+    private final Sinks.Many<UserReadDto> userUpdatedSink = Sinks.many().multicast().onBackpressureBuffer();
+
     public UserGraphQLController(IServiceUser userService, UserMapper userMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
     }
 
+    // ------------------- Subscriptions -------------------
+    @SubscriptionMapping
+    public Flux<UserReadDto> userCreated() {
+        return userCreatedSink.asFlux();
+    }
+
+    @SubscriptionMapping
+    public Flux<UserReadDto> userUpdated() {
+        return userUpdatedSink.asFlux();
+    }
+
+    // ------------------- Queries -------------------
     @QueryMapping
     public List<UserReadDto> getAllUsers() {
         return userService.getAllUsers()
@@ -37,32 +55,28 @@ public class UserGraphQLController {
         return userMapper.toUserReadDto(userService.getUserById(id));
     }
 
-
+    // ------------------- Mutations -------------------
     @MutationMapping
     public UserReadDto createUser(@Argument UserInput input) {
-
         UserCreateUpdateDto dto = new UserCreateUpdateDto(
                 null,                   // id
                 input.getEmail(),       // email
                 input.getPassword(),    // password
                 input.getNom(),         // nom
-                input.getPrenom(),      // prenom
-                input.getTelephone(),   // telephone
-                null                    // roleIds (facultatif pour ton test)
+                input.getPrenom(),
+                input.getTelephone(),
+                null
         );
 
-
         User saved = userService.create(dto);
+        UserReadDto readDto = userMapper.toUserReadDto(saved);
 
-        return userMapper.toUserReadDto(saved);
+        userCreatedSink.tryEmitNext(readDto); // <-- publier l'événement pour la subscription
+        return readDto;
     }
 
-
     @MutationMapping
-    public UserReadDto updateUser2(
-            @Argument Long id,
-            @Argument UserInput input
-    ) {
+    public UserReadDto updateUser2(@Argument Long id, @Argument UserInput input) {
         UserCreateUpdateDto dto = new UserCreateUpdateDto(
                 id,
                 input.getEmail(),
@@ -73,15 +87,15 @@ public class UserGraphQLController {
                 null
         );
 
-        return userMapper.toUserReadDto(userService.updateUser2(id, dto));
+        User updated = userService.updateUser2(id, dto);
+        UserReadDto readDto = userMapper.toUserReadDto(updated);
+
+        userUpdatedSink.tryEmitNext(readDto); // <-- publier l'événement pour la subscription
+        return readDto;
     }
 
-
-
-
-
-
-
-
+    @MutationMapping
+    public User delete(@Argument Long id) {
+        return userService.delete(id);
+    }
 }
-

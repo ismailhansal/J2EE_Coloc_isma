@@ -143,6 +143,15 @@ public class ServiceUserImpl implements IServiceUser {
         return userRepository.save(existing);
     }
 
+    @Override
+    public User delete(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé avec id: " + id));
+        userRepository.delete(user);
+        return user; // tu peux retourner l'utilisateur supprimé si tu veux
+    }
+
+
 
 
 
