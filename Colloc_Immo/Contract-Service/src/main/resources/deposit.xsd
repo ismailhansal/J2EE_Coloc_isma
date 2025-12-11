@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://locaimmo.com/deposit"
+           xmlns:tns="http://locaimmo.com/deposit"
+           elementFormDefault="qualified">
+
+    <xs:element name="GetDepositRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetDepositResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="contractId" type="xs:long"/>
+                <xs:element name="montant" type="xs:decimal"/>
+                <xs:element name="statut" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateDepositRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="contractId" type="xs:long"/>
+                <xs:element name="montant" type="xs:decimal"/>
+                <xs:element name="dateVersement" type="xs:date"/>
+                <xs:element name="statut" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateDepositResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="montant" type="xs:decimal"/>
+                <xs:element name="statut" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+

@@ -10,6 +10,8 @@
         <option value="$PROJECT_DIR$/Colloc_Immo/Service-Property/pom.xml" />
         <option value="$PROJECT_DIR$/Colloc_Immo/Gateway-service/pom.xml" />
         <option value="$PROJECT_DIR$/Colloc_Immo/ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/Colloc_Immo/Service-Annonce/pom.xml" />
+        <option value="$PROJECT_DIR$/Colloc_Immo/Contract-Service/pom.xml" />
       </list>
     </option>
   </component>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://locaimmo.com/contract"
+           xmlns:tns="http://locaimmo.com/contract"
+           elementFormDefault="qualified">
+
+    <xs:element name="GetContractRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetContractResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="statut" type="xs:string"/>
+                <xs:element name="loyerMensuel" type="xs:decimal"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateContractRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="propertyId" type="xs:long"/>
+                <xs:element name="tenantId" type="xs:long"/>
+                <xs:element name="proprietaireId" type="xs:long"/>
+                <xs:element name="dateDebut" type="xs:date"/>
+                <xs:element name="dateFin" type="xs:date"/>
+                <xs:element name="loyerMensuel" type="xs:decimal"/>
+                <xs:element name="depotGarantie" type="xs:decimal"/>
+                <xs:element name="statut" type="xs:string"/>
+                <xs:element name="conditions" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateContractResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="statut" type="xs:string"/>
+                <xs:element name="loyerMensuel" type="xs:decimal"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+

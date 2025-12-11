@@ -2,7 +2,9 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Colloc_Immo/ConfigServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Colloc_Immo/Contract-Service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Colloc_Immo/Gateway-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Colloc_Immo/Service-Annonce/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Colloc_Immo/Service-Property/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Colloc_Immo/Service-User/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Colloc_Immo/servicediscovery/src/main/java" charset="UTF-8" />

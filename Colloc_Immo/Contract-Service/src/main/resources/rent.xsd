@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://locaimmo.com/rent"
+           xmlns:tns="http://locaimmo.com/rent"
+           elementFormDefault="qualified">
+
+    <xs:element name="GetRentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetRentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="contractId" type="xs:long"/>
+                <xs:element name="montant" type="xs:decimal"/>
+                <xs:element name="statutPaiement" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateRentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="contractId" type="xs:long"/>
+                <xs:element name="mois" type="xs:int"/>
+                <xs:element name="annee" type="xs:int"/>
+                <xs:element name="montant" type="xs:decimal"/>
+                <xs:element name="dateEcheance" type="xs:date"/>
+                <xs:element name="statutPaiement" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateRentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="montant" type="xs:decimal"/>
+                <xs:element name="statutPaiement" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+

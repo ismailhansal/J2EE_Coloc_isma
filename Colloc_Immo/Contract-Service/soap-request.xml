@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:con="http://locaimmo.com/contract">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <con:GetContractRequest>
+         <con:id>1</con:id>
+      </con:GetContractRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+

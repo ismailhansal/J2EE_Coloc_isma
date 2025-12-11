@@ -11,20 +11,7 @@
         <module name="Colloc_Immo" />
         <module name="servicediscovery" />
       </profile>
-      <profile name="Annotation profile for serviceproperty" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <option name="mapstruct.defaultComponentModel" value="spring" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
-        </processorPath>
-        <module name="serviceproperty" />
-      </profile>
-      <profile name="Annotation profile for serviceuser" enabled="true">
+      <profile name="Annotation profile for serviceannonce" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -33,15 +20,30 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
         </processorPath>
+        <module name="serviceannonce" />
         <module name="serviceuser" />
       </profile>
+      <profile name="Annotation profile for servicecontrat" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+        </processorPath>
+        <module name="servicecontrat" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="serviceproperty" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Colloc_Immo" options="-parameters" />
       <module name="ConfigServer" options="-parameters" />
       <module name="Gateway-service" options="-parameters" />
+      <module name="serviceannonce" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="servicecontrat" options="-parameters" />
       <module name="servicediscovery" options="-parameters" />
       <module name="serviceproperty" options="-parameters -Amapstruct.defaultComponentModel=spring" />
       <module name="serviceuser" options="-parameters -Amapstruct.defaultComponentModel=spring" />
