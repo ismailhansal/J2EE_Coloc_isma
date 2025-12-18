@@ -11,7 +11,7 @@
         <module name="Colloc_Immo" />
         <module name="servicediscovery" />
       </profile>
-      <profile name="Annotation profile for serviceannonce" enabled="true">
+      <profile name="Annotation profile for serviceuser" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
